@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="StageLink Receiver"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ipText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Phone IP: ..."
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/portEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="UDP port"
+            android:inputType="number"
+            android:text="47321" />
+
+        <EditText
+            android:id="@+id/streamEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Stream ID"
+            android:inputType="number"
+            android:text="1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Startup jitter buffer" />
+
+        <SeekBar
+            android:id="@+id/bufferSeek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="37"
+            android:progress="7" />
+
+        <TextView
+            android:id="@+id/bufferText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10 ms" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Receiver volume" />
+
+        <SeekBar
+            android:id="@+id/volumeSeek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="70" />
+
+        <CheckBox
+            android:id="@+id/muteCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mute" />
+
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="20dp"
+            android:text="Start receiver" />
+
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Stopped"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/statsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="monospace"
+            android:text="Packets: 0"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Use wired headphones / USB-C DAC. Start at low volume. Bluetooth is not recommended for live monitoring."
+            android:textSize="13sp" />
+    </LinearLayout>
+</ScrollView>
