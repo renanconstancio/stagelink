@@ -27,6 +27,8 @@ juce_add_plugin(StageLinkSender
     COPY_PLUGIN_AFTER_BUILD FALSE
 )
 
+juce_generate_juce_header(StageLinkSender)
+
 target_sources(StageLinkSender PRIVATE
     Source/PluginProcessor.cpp
     Source/PluginProcessor.h
