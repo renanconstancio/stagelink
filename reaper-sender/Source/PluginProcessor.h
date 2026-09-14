@@ -41,21 +41,37 @@ public:
     uint64_t getDroppedFrames() const noexcept { return droppedFrames.load(); }
     bool sampleRateIsSupported() const noexcept { return sampleRateOk.load(); }
 
+    // Auto-discovery diagnostics. The current UI does not need to use these yet,
+    // but they are useful when we add a discovery status indicator later.
+    juce::String getLastDiscoveredClient() const;
+    uint64_t getDiscoveryCount() const noexcept { return discoveryCount.load(); }
+
 private:
     static constexpr int ringCapacityFrames = 48000 * 2;
+    static constexpr int discoveryPort = 47320;
+
+    // REAPER's Web Browser Interface port is not exposed to a generic VST3.
+    // For StageLink V1 we standardise it on 8010. Later this can become a
+    // plug-in setting (or be supplied by a ReaScript helper).
+    static constexpr int reaperWebPort = 8010;
+
     juce::AbstractFifo fifo { ringCapacityFrames };
     std::array<float, ringCapacityFrames * 2> ring {};
 
     mutable juce::CriticalSection settingsLock;
     juce::String destinationHost { "192.168.1.100" };
+    juce::String lastDiscoveredClient;
+
     std::atomic<int> destinationPort { 47321 };
     std::atomic<int> streamId { 1 };
     std::atomic<bool> streaming { false };
     std::atomic<bool> sampleRateOk { true };
     std::atomic<uint64_t> sentPackets { 0 };
     std::atomic<uint64_t> droppedFrames { 0 };
+    std::atomic<uint64_t> discoveryCount { 0 };
 
     void run() override;
+    void handleDiscovery(juce::DatagramSocket& discoverySocket);
     bool readPacketFrames(std::array<float, 256>& interleaved);
     void writeFramesToRing(const juce::AudioBuffer<float>& buffer);
 
